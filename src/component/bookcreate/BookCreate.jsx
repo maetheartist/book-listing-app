@@ -6,17 +6,21 @@ export default function BookCreate({ onCreate }) {
     e.preventDefault();
 
     if (title === "") return;
+    onCreate(title);
     SetTitle("");
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="search"
-        value={title}
-        onChange={(e) => SetTitle(e.target.value)}
-      />
-      <button>Add Books</button>
-    </form>
+    <div className="book-create">
+      <form onSubmit={handleSubmit}>
+        <input
+          className="input"
+          type="search"
+          value={title}
+          onChange={(e) => SetTitle(e.target.value)}
+        />
+        <button className="button is-primary">Add Books</button>
+      </form>
+    </div>
   );
 }

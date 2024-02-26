@@ -7,6 +7,7 @@ import BookCreate from "./component/bookcreate/BookCreate";
 
 export default function App() {
   const [books, setBooks] = React.useState([]);
+
   const createBook = (title) => {
     const allbooks = { title: title, id: crypto.randomUUID() };
 
@@ -14,9 +15,17 @@ export default function App() {
       return [...books, allbooks];
     });
   };
+
+  const deletebyId = (id) => {
+    setBooks((books) => {
+      return books.filter((book) => book.id !== id);
+    });
+  };
+
   return (
-    <div>
-      <Booklist books={books} />
+    <div className="app">
+      {console.log(books)}
+      <Booklist books={books} onDelete={deletebyId} />
       <BookCreate onCreate={createBook} />
     </div>
   );
